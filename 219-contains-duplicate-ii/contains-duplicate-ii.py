@@ -3,11 +3,10 @@ class Solution:
         indexes = {}
         for i in range(len(nums)):
             if nums[i] not in indexes :
-                indexes[nums[i]] = [i]
+                indexes[nums[i]] = i
             else :
-                indexes[nums[i]].append(i)
-        for positions in indexes.values():
-            for i in range(1,len(positions)):
-                if positions[i] - positions[i-1] <= k :
+                temp = i - indexes[nums[i]]
+                if temp <= k :
                     return True
+                indexes[nums[i]] = i
         return False
